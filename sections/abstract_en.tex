@@ -1,0 +1,35 @@
+\chapter*{\texorpdfstring{{\tnr\bfseries\fontsize{14pt}{20pt}\selectfont Abstract}}{Abstract}}
+\thispagestyle{thesis-front}
+\markboth{成都信息工程大学学士学位论文}{成都信息工程大学学士学位论文}
+
+\begin{thesisenabstract}
+\thesisenabsfirstline{Real magnetic resonance imaging (MRI) data is difficult to use directly in}
+\thesisenabsline{teaching demonstrations and generative model experiments because of acquisition}
+\thesisenabsline{cost, privacy protection, and ethical review. A single two-dimensional slice also gives}
+\thesisenabsline{only limited insight into the spatial structure of the brain. Based on this practical}
+\thesisenabsline{need, this thesis designs and implements an MRI medical image pseudo-generation}
+\thesisenabsline{platform built on 3D Gaussian Splatting (3DGS) and StyleGAN2. The IXI brain MRI}
+\thesisenabsline{dataset is used as the data source. The preprocessing stage includes Neuroimaging}
+\thesisenabsline{Informatics Technology Initiative (NIfTI) volume slicing, intensity normalization,}
+\thesisenabsline{resolution standardization, low-information slice filtering, and StyleGAN2-ADA dataset}
+\thesisenabsline{construction. A two-dimensional MRI slice generator is then trained and connected}
+\thesisenabsline{to the platform for inference. In the three-dimensional stage, 180 continuous MRI}
+\thesisenabsline{slices are used as supervision, and a 300000-point initial point cloud serves as the}
+\thesisenabsline{spatial starting point. After 30000 iterations of 3DGS training, the system obtains}
+\thesisenabsline{a representation with 556424 Gaussian points, and a 60000-point preview cloud is}
+\thesisenabsline{exported for frontend interaction. The engineering platform uses a FastAPI and React}
+\thesisenabsline{architecture. The backend manages data, generation, analysis, task, and 3D asset APIs,}
+\thesisenabsline{while the frontend provides the dashboard, generation workbench, medical image}
+\thesisenabsline{viewer, image analysis report, trust evaluation, point cloud display, and AI assistant.}
+\thesisenabsline{Experimental records show that the trained StyleGAN2 model can generate MRI-like}
+\thesisenabsline{slices with recognizable brain grayscale structures. At iteration 30000, 3DGS training}
+\thesisenabsline{reaches an L1 loss of 0.0459 and a PSNR of 20.0909 dB. These metrics mainly}
+\thesisenabsline{reflect rendering reconstruction consistency in this experiment. Project logs, model}
+\thesisenabsline{snapshots, rendered slices, metric curves, and frontend display assets together show}
+\thesisenabsline{that the platform provides a reproducible workflow from MRI data processing to}
+\thesisenabslastline{two-dimensional generation and three-dimensional Gaussian representation.}
+\end{thesisenabstract}
+
+\begin{thesisenkeywords}
+\noindent{\bfseries Key Words}{: MRI Medical Image; 3D Gaussian Splatting; StyleGAN2; Medical Image Pseudo-Generation; Teaching Platform}
+\end{thesisenkeywords}

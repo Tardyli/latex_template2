@@ -1,0 +1,15 @@
+\chapter*{附\quad 录}
+\thispagestyle{thesis-main}
+\addcontentsline{toc}{chapter}{\texorpdfstring{附\quad 录}{附 录}}
+\markboth{成都信息工程大学学士学位论文}{成都信息工程大学学士学位论文}
+
+\thesisbodyfont
+\justifying
+
+\noindent{\songti\bfseries 附录 A\quad 项目主要文件与实验产物}
+
+本文涉及的工程代码与实验结果主要保存在项目目录 \thesispath{MRI_Platform} 中。后端入口文件为 \thesispath{backend/app/main.py}。该文件用于创建 FastAPI 应用，并挂载 API、WebSocket 和静态媒体路由。主要接口文件为 \thesispath{backend/app/api/routes.py}。前端入口文件为 \thesispath{frontend/src/main.tsx}，核心页面文件为 \thesispath{frontend/src/app/App.tsx}。MRI 数据预处理脚本为 \thesispath{src/preprocess_mri.py}。该脚本负责读取 NIfTI 体数据并导出 PNG 切片。点云初始化脚本为 \thesispath{src/init_pcd.py}。该脚本负责把连续切片序列转换为 PLY 点云文件。
+
+StyleGAN2 相关训练配置和日志保存在主训练运行目录中。训练配置文件记录训练数据、分辨率、batch size、学习率和 ADA 参数。日志文件保存训练过程输出。可加载模型权重、训练样本网格和生成切片样例分别位于训练结果目录与生成结果目录。这些文件可用于复核第 6 章中的二维生成实验。
+
+三维重建结果包括初始点云文件、3DGS 训练目录和平台展示材料。初始点云文件 \thesispath{init_point_cloud.ply} 包含 477426 个顶点。复核样例包含 31980 个顶点。3DGS 主训练结果位于 \thesispath{results/3dgs_runs/mri_bestcand80_200k_30000_20260428_081347} 目录。该目录包含 180 个相机参数、30000 轮训练日志、\thesispath{chkpnt30000.pth}、第 30000 轮输出点云以及渲染切片和参考切片。最新前端展示资产保存在 \thesispath{results/3dgs_frontend} 中，其中 \thesispath{summary.json} 记录最终 L1 为 0.0459、PSNR 为 20.0909 dB，\thesispath{mri_3dgs_preview_60k.ply} 包含 60000 个预览点。论文使用的 3DGS 指标曲线和切片对比图保存在 \thesispath{figures/3dgs_metrics_30000.png} 与 \thesispath{figures/3dgs_slice_comparison_30000.png} 中。上述材料共同支撑第 5 章系统实现和第 6 章测试分析中的主要结论。

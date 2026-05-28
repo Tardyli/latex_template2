@@ -1,0 +1,11 @@
+\chapter*{\texorpdfstring{{\songti\bfseries\fontsize{16pt}{20pt}\selectfont 摘\quad 要}}{摘要}}
+\thispagestyle{thesis-front}
+\markboth{成都信息工程大学学士学位论文}{成都信息工程大学学士学位论文}
+
+{\songti\fontsize{12pt}{20pt}\selectfont
+真实磁共振成像（Magnetic Resonance Imaging，MRI）数据受到采集成本、隐私保护和伦理审查等因素限制，直接用于教学演示和生成模型实验时会遇到数据不足、流程分散和结果难展示等问题。单张二维切片只能呈现局部层面，也不利于理解脑部结构的空间关系。围绕这些实际需求，本文设计并实现了一套基于三维高斯泼溅（3D Gaussian Splatting，3DGS）与 StyleGAN2 的 MRI 医学图像拟生成平台。平台以 IXI 脑部 MRI 数据为实验基础，完成神经影像信息技术倡议（Neuroimaging Informatics Technology Initiative，NIfTI）体数据切片、灰度归一化、分辨率统一、低信息切片过滤和 StyleGAN2-ADA 训练集构建，并训练得到可接入平台推理的二维 MRI 切片生成模型。在三维表达部分，系统选取 180 张连续 MRI 切片作为监督图像，以 300000 点初始点云作为空间起点，经过 30000 轮 3DGS 训练后得到包含 556424 个高斯点的三维表达结果，同时导出 60000 点预览点云供前端交互展示。工程实现采用 FastAPI + React 架构，后端负责数据、生成、分析、任务和三维资产接口，前端提供仪表盘、生成工作台、医学影像查看器、影像分析报告、可信性评估、点云展示和 AI 助手等功能。实验结果显示，训练后的 StyleGAN2 权重可以生成具有脑部 MRI 灰度轮廓的二维切片；3DGS 在第 30000 轮训练时达到 L1 为 0.0459、PSNR 为 20.0909 dB。这些指标主要反映本实验中的渲染重建一致性。结合训练日志、模型权重、渲染切片、指标曲线和前端展示资产可以看出，平台已经形成从 MRI 数据整理到二维生成、再到三维高斯表达的可复现实验流程。
+\par}
+
+\vspace{1em}
+
+\noindent{\songti\bfseries\fontsize{12pt}{20pt}\selectfont 关键词}{\songti\fontsize{12pt}{20pt}\selectfont ：MRI 医学图像；3D Gaussian Splatting；StyleGAN2；医学图像拟生成；教学平台}

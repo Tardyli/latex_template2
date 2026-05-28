@@ -1,0 +1,47 @@
+{
+  "run_dir": "MRI_Platform/results/3dgs_runs/mri_bestcand80_200k_30000_20260428_081347",
+  "preview_ply": "MRI_Platform/results/3dgs_frontend/mri_3dgs_preview_60k.ply",
+  "preview_points": 60000,
+  "full_ply": "MRI_Platform/results/3dgs_runs/mri_bestcand80_200k_30000_20260428_081347/point_cloud/iteration_30000/point_cloud.ply",
+  "full_points": 556424,
+  "comparison_figure": "MRI_Platform/results/3dgs_frontend/fig_3dgs_slice_comparison.png",
+  "metric_figure": "MRI_Platform/results/3dgs_frontend/fig_3dgs_metrics_curve.png",
+  "metrics": [
+    {
+      "iteration": 1000,
+      "l1": 0.098594468832016,
+      "psnr": 14.605068969726563
+    },
+    {
+      "iteration": 3000,
+      "l1": 0.07775546163320542,
+      "psnr": 16.10664005279541
+    },
+    {
+      "iteration": 7000,
+      "l1": 0.06751113831996917,
+      "psnr": 16.844118881225587
+    },
+    {
+      "iteration": 15000,
+      "l1": 0.057893119752407074,
+      "psnr": 17.913465118408205
+    },
+    {
+      "iteration": 30000,
+      "l1": 0.04587645530700684,
+      "psnr": 20.090943527221683
+    }
+  ],
+  "display_iteration": 30000,
+  "render_samples": [
+    "MRI_Platform/results/3dgs_runs/mri_bestcand80_200k_30000_20260428_081347/train/ours_30000/renders/00000.png",
+    "MRI_Platform/results/3dgs_runs/mri_bestcand80_200k_30000_20260428_081347/train/ours_30000/renders/00040.png",
+    "MRI_Platform/results/3dgs_runs/mri_bestcand80_200k_30000_20260428_081347/train/ours_30000/renders/00079.png"
+  ],
+  "gt_samples": [
+    "MRI_Platform/results/3dgs_runs/mri_bestcand80_200k_30000_20260428_081347/train/ours_30000/gt/00000.png",
+    "MRI_Platform/results/3dgs_runs/mri_bestcand80_200k_30000_20260428_081347/train/ours_30000/gt/00040.png",
+    "MRI_Platform/results/3dgs_runs/mri_bestcand80_200k_30000_20260428_081347/train/ours_30000/gt/00079.png"
+  ]
+}

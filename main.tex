@@ -1,0 +1,393 @@
+\documentclass[UTF8,12pt,a4paper,oneside,openany,fontset=none]{ctexrep}
+
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=3cm,right=3cm]{geometry}
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}{%
+    \setmainfont{Times New Roman}
+    \newfontfamily\tnr{Times New Roman}
+    \setmonofont{Times New Roman}
+}{%
+    \PackageError{cuit-thesis}{Required font Times New Roman not found}{Install Times New Roman, or upload it to the Overleaf project and update the font configuration.}
+}
+\IfFileExists{fonts/simsun.ttc}{%
+    \setCJKmainfont[Path=fonts/,AutoFakeBold=2.5]{simsun.ttc}
+    \setCJKfamilyfont{zhsong}[Path=fonts/,AutoFakeBold=2.5]{simsun.ttc}
+    \setCJKmonofont[Path=fonts/,AutoFakeBold=2.5]{simsun.ttc}
+}{%
+    \IfFontExistsTF{SimSun}{%
+        \setCJKmainfont[AutoFakeBold=2.5]{SimSun}
+        \setCJKfamilyfont{zhsong}[AutoFakeBold=2.5]{SimSun}
+        \setCJKmonofont[AutoFakeBold=2.5]{SimSun}
+    }{%
+        \PackageError{cuit-thesis}{Required font SimSun not found}{Upload fonts/simsun.ttc to the Overleaf project, or compile on a system with SimSun installed.}
+    }
+}
+\IfFileExists{fonts/simhei.ttf}{%
+    \setCJKfamilyfont{zhhei}[Path=fonts/,AutoFakeBold=2.5]{simhei.ttf}
+}{%
+    \IfFontExistsTF{SimHei}{%
+        \setCJKfamilyfont{zhhei}[AutoFakeBold=2.5]{SimHei}
+    }{%
+        \PackageError{cuit-thesis}{Required font SimHei not found}{Upload fonts/simhei.ttf to the Overleaf project, or compile on a system with SimHei installed.}
+    }
+}
+\IfFileExists{fonts/simfang.ttf}{%
+    \setCJKfamilyfont{zhfs}[Path=fonts/,AutoFakeBold=2.5]{simfang.ttf}
+}{%
+    \IfFontExistsTF{FangSong_GB2312}{%
+        \setCJKfamilyfont{zhfs}[AutoFakeBold=2.5]{FangSong_GB2312}
+    }{%
+        \IfFontExistsTF{FangSong}{%
+            \setCJKfamilyfont{zhfs}[AutoFakeBold=2.5]{FangSong}
+        }{%
+            \PackageError{cuit-thesis}{Required font simfang.ttf, FangSong_GB2312 or FangSong not found}{Upload fonts/simfang.ttf to the Overleaf project, or compile on a system with FangSong_GB2312/FangSong installed.}
+        }
+    }
+}
+\newcommand{\songti}{\CJKfamily{zhsong}}
+\newcommand{\heiti}{\CJKfamily{zhhei}}
+\newcommand{\fangsong}{\CJKfamily{zhfs}}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb}
+\usepackage[labelsep=space]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{indentfirst}
+\usepackage{ragged2e}
+\usepackage[hang]{footmisc}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{lastpage}
+\usepackage[backend=biber,style=gb7714-2015,sorting=none,maxbibnames=3,minbibnames=3,maxcitenames=3,mincitenames=3]{biblatex}
+
+\addbibresource{bib/references.bib}
+\DefineBibliographyStrings{english}{andothers = {et\addabbrvspace al\adddot}}
+\let\inlinecite\cite
+\let\cite\supercite
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black
+}
+\urlstyle{same}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\setlength{\headheight}{14.5pt}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+\newcommand{\thesisheadertext}{成都信息工程大学学士学位论文}
+\newcommand{\thesisbodyfont}{\songti\fontsize{12pt}{20pt}\selectfont}
+\newcommand{\thesiswuhao}{\songti\fontsize{10.5pt}{15pt}\selectfont}
+\newcommand{\thesisfangsongwuhao}{\fangsong\fontsize{10.5pt}{24pt}\selectfont}
+\newcommand{\thesissmallfive}{\songti\fontsize{9pt}{11pt}\selectfont}
+\newcommand{\thesisfootnotefont}{\songti\fontsize{12pt}{20pt}\selectfont}
+\newcommand{\thesisequationfont}{\tnr\fontsize{10.5pt}{20pt}\selectfont}
+\newcommand{\thesisdecltitlefont}{\songti\bfseries\fontsize{16pt}{24pt}\selectfont}
+\newcommand{\thesisdeclbodyfont}{\songti\fontsize{12pt}{20pt}\selectfont}
+\newcommand{\thesispageline}{%
+    {\thesissmallfive 第{\tnr\thepage}页\quad 共{\tnr\pageref{LastPage}}页}%
+}
+\newcommand{\thesisfrontpage}{%
+    {\tnr\fontsize{9pt}{11pt}\selectfont\thepage}%
+}
+\newcommand{\thesispath}[1]{%
+    {\tnr\fontsize{12pt}{20pt}\selectfont\nolinkurl{#1}}%
+}
+\newcommand{\thesisdecltitle}[2]{%
+    \begin{center}
+    \hspace*{-0.85em}\begin{minipage}{\dimexpr\textwidth-0.95em\relax}
+    \centering{\thesisdecltitlefont #1\par #2\par}
+    \end{minipage}
+    \end{center}
+}
+\newenvironment{thesisdeclbody}{%
+    \begingroup
+    \thesisdeclbodyfont
+    \justifying
+    \setlength{\parindent}{2em}
+    \setlength{\parskip}{0pt}
+}{%
+    \par\endgroup
+}
+\newcommand{\thesisdeclsignline}[1]{%
+    \par\vspace{10pt}
+    {\thesisdeclbodyfont\noindent\hspace*{2em}#1\hfill 年\hspace{1.1cm}月\hspace{1.1cm}日\par}
+    \vspace{10pt}
+}
+\newcommand{\thesisdeclseparator}{%
+    \par\vspace{0.2em}
+    \noindent\hbox to \textwidth{\leaders\hbox to 0.75em{\hss.\hss}\hfill}
+    \par\vspace{0.55em}
+}
+\newcommand{\thesisdeclnote}[1]{%
+    {\thesisfangsongwuhao\noindent\begin{minipage}{\dimexpr\textwidth-0.25cm\relax}#1\end{minipage}\par}
+}
+\newenvironment{thesisenabstract}{%
+    \begingroup
+    \tnr\fontsize{12pt}{20pt}\selectfont
+    \frenchspacing
+    \vspace{10pt}
+    \setlength{\parindent}{2em}
+    \setlength{\parskip}{0pt}
+    \setlength{\leftskip}{0pt}
+    \setlength{\rightskip}{0pt}
+    \setlength{\parfillskip}{0pt plus 1fil}
+    \spaceskip=.3333em plus .8em minus .2em
+    \xspaceskip=.5em plus .9em minus .25em
+    \pretolerance=100
+    \tolerance=9999
+    \hyphenpenalty=200
+    \exhyphenpenalty=100
+    \emergencystretch=3em
+    \hbadness=10001
+    \justifying
+}{%
+    \par\vspace{10pt}\endgroup
+}
+\newenvironment{thesisenkeywords}{%
+    \begingroup
+    \tnr\fontsize{12pt}{20pt}\selectfont
+    \frenchspacing
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\leftskip}{0pt}
+    \setlength{\rightskip}{0pt}
+    \setlength{\parfillskip}{0pt plus 1fil}
+    \spaceskip=.3333em plus .8em minus .2em
+    \xspaceskip=.5em plus .9em minus .25em
+    \tolerance=9999
+    \emergencystretch=3em
+    \hbadness=10001
+    \justifying
+}{%
+    \par\endgroup
+}
+\newcommand{\thesisenabsline}[1]{%
+    \noindent\hbox to\linewidth{\spaceskip=.3333em plus 1fill minus .12em\relax #1}\par
+}
+\newcommand{\thesisenabsfirstline}[1]{%
+    \noindent\hspace*{2em}\hbox to\dimexpr\linewidth-2em\relax{\spaceskip=.3333em plus 1fill minus .12em\relax #1}\par
+}
+\newcommand{\thesisenabslastline}[1]{%
+    \noindent #1\par
+}
+\renewcommand{\texttt}[1]{{\tnr #1}}
+
+\AtBeginDocument{\thesisbodyfont}
+\linespread{1.0}\selectfont
+\renewcommand{\footnotelayout}{\thesisfootnotefont\justifying\setlength{\parindent}{0pt}}
+\setlength{\footnotemargin}{2em}
+\setlength{\footnotesep}{0pt}
+\setlength{\skip\footins}{10pt}
+
+\DeclareCaptionFont{thesiscaptionfont}{\songti\fontsize{10.5pt}{20pt}\selectfont}
+\DeclareCaptionLabelFormat{thesiscaptionlabel}{#1#2\hspace{1em}}
+\captionsetup{
+    font=thesiscaptionfont,
+    labelfont=normalfont,
+    textfont=normalfont,
+    labelformat=thesiscaptionlabel,
+    labelsep=none,
+    justification=centering,
+    singlelinecheck=false
+}
+\captionsetup*[figure]{position=bottom,skip=6pt}
+\captionsetup*[table]{position=top,skip=6pt}
+\captionsetup*[subfigure]{
+    font=thesiscaptionfont,
+    labelfont=normalfont,
+    textfont=normalfont,
+    labelsep=space,
+    justification=centering,
+    singlelinecheck=false,
+    skip=6pt
+}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\newcommand{\thesiscontinuedtablehead}[1]{%
+    \multicolumn{#1}{r}{\thesiscaptionfont 续表\thetable}%
+}
+
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
+\numberwithin{equation}{chapter}
+\renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
+\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
+\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
+\AtBeginEnvironment{equation}{\thesisequationfont}
+\AtBeginEnvironment{align}{\thesisequationfont}
+\AtBeginEnvironment{gather}{\thesisequationfont}
+\AtBeginEnvironment{multline}{\thesisequationfont}
+\AtBeginEnvironment{alignat}{\thesisequationfont}
+\makeatletter
+\DeclareSymbolFont{operators}{TU}{\rmdefault}{m}{n}
+\renewcommand{\tagform@}[1]{%
+    \maketag@@@{{\thesisequationfont (#1)}}%
+}
+\makeatother
+
+\titleformat{\chapter}
+    {\centering\songti\bfseries\fontsize{16pt}{20pt}\selectfont}
+    {第\zhnumber{\thechapter}章}
+    {1em}
+    {}
+\titleformat{\section}
+    {\raggedright\songti\bfseries\fontsize{14pt}{20pt}\selectfont}
+    {\thesection}
+    {1em}
+    {}
+\titleformat{\subsection}
+    {\raggedright\songti\bfseries\fontsize{12pt}{20pt}\selectfont}
+    {\thesubsection}
+    {1em}
+    {}
+\titleformat{\subsubsection}
+    {\raggedright\songti\bfseries\fontsize{12pt}{20pt}\selectfont}
+    {\thesubsubsection}
+    {1em}
+    {}
+
+\titlespacing*{\chapter}{0pt}{-30pt}{10pt}
+\titlespacing*{\section}{0pt}{10pt}{10pt}
+\titlespacing*{\subsection}{0pt}{10pt}{10pt}
+\titlespacing*{\subsubsection}{0pt}{6pt}{6pt}
+
+\renewcommand{\contentsname}{目\quad 录}
+\newcommand{\thesistocfont}{\songti\fontsize{12pt}{20pt}\selectfont}
+\newcommand{\thesistoctitlefont}{\songti\bfseries\fontsize{16pt}{20pt}\selectfont}
+\newcommand{\thesistocpagefont}{\tnr\fontsize{12pt}{20pt}\selectfont}
+\renewcommand{\cfttoctitlefont}{\hfill\songti\bfseries\fontsize{16pt}{20pt}\selectfont}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\setlength{\cftbeforetoctitleskip}{10pt}
+\setlength{\cftaftertoctitleskip}{10pt}
+\renewcommand{\cftchapfont}{\thesistocfont}
+\renewcommand{\cftsecfont}{\thesistocfont}
+\renewcommand{\cftsubsecfont}{\thesistocfont}
+\renewcommand{\cftchappagefont}{\thesistocpagefont}
+\renewcommand{\cftsecpagefont}{\thesistocpagefont}
+\renewcommand{\cftsubsecpagefont}{\thesistocpagefont}
+\renewcommand{\cftdotsep}{1}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftchappresnum}{}
+\renewcommand{\cftchapaftersnum}{}
+\cftsetindents{chapter}{0em}{3.8em}
+\cftsetindents{section}{2em}{3.4em}
+\cftsetindents{subsection}{4em}{4.6em}
+\setlength{\cftbeforechapskip}{0pt}
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+
+\makeatletter
+\newcommand{\customtableofcontents}{
+    \begingroup
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{0pt}
+    \thispagestyle{thesis-front}
+    \markboth{\thesisheadertext}{\thesisheadertext}
+    \vspace*{-30pt}
+    {\centering\thesistoctitlefont\contentsname\par}
+    \vspace{10pt}
+    {\thesistocfont\noindent\hfill 论文总页数：{\thesistocpagefont\pageref{LastPage}}页\par}
+    {\thesistocfont\justifying\@starttoc{toc}}
+    \endgroup
+}
+\makeatother
+
+\fancypagestyle{thesis-decl}{
+    \fancyhf{}
+    \fancyhead[C]{{\songti\fontsize{9pt}{11pt}\selectfont \thesisheadertext}}
+    \fancyfoot[C]{\thesisfrontpage}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{thesis-front}{
+    \fancyhf{}
+    \fancyhead[C]{{\songti\fontsize{9pt}{11pt}\selectfont \thesisheadertext}}
+    \fancyfoot[C]{\thesisfrontpage}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{thesis-main}{
+    \fancyhf{}
+    \fancyhead[C]{{\songti\fontsize{9pt}{11pt}\selectfont \thesisheadertext}}
+    \fancyfoot[C]{\thesispageline}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyhead[C]{{\songti\fontsize{9pt}{11pt}\selectfont \thesisheadertext}}
+    \fancyfoot[C]{\thesispageline}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+\defbibheading{bibintoc}[\bibname]{%
+    \chapter*{#1}
+    \addcontentsline{toc}{chapter}{#1}
+    \markboth{\thesisheadertext}{\thesisheadertext}
+}
+\renewcommand*{\bibfont}{\songti\fontsize{12pt}{20pt}\selectfont\sloppy\setlength{\emergencystretch}{3em}\hbadness=10001}
+\setlength{\bibhang}{2em}
+\setlength{\bibitemsep}{0pt}
+
+\begin{document}
+
+\pagestyle{empty}
+\input{sections/cover}
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+\pagestyle{thesis-decl}
+\input{sections/originality_statement}
+
+\input{sections/authorization}
+\clearpage
+
+\pagestyle{thesis-front}
+\input{sections/abstract_cn}
+\clearpage
+
+\input{sections/abstract_en}
+\clearpage
+
+\customtableofcontents
+\clearpage
+
+\pagenumbering{arabic}
+\pagestyle{thesis-main}
+\input{sections/chapter1}
+\input{sections/chapter2}
+\input{sections/chapter3}
+\input{sections/chapter4}
+\input{sections/chapter5}
+\input{sections/chapter6}
+\input{sections/chapter7}
+
+\clearpage
+\printbibliography[heading=bibintoc,title=参考文献]
+
+\clearpage
+\input{sections/appendix}
+
+\clearpage
+\input{sections/acknowledgements}
+
+\end{document}
