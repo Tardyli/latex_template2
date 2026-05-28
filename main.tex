@@ -298,6 +298,7 @@
     \setlength{\parskip}{0pt}
     \thispagestyle{thesis-front}
     \markboth{\thesisheadertext}{\thesisheadertext}
+    \renewcommand{\numberline}[1]{{\let\hspace\@gobble ##1}\space}
     \vspace*{-30pt}
     {\centering\thesistoctitlefont\contentsname\par}
     \vspace{10pt}
